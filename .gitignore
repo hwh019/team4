@@ -1,0 +1,8 @@
+# Compiled class file
+*.class
+.classpath
+.project
+.settings/
+
+hotel/.gitignore
+/.metadata/
