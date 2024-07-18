@@ -50,7 +50,63 @@ public class ReservationManager implements Program {
 			return;
 		} else {
 			System.out.println(tmps.get(0).getName() + " 회원님 어서오세요.");
+			memberMenu();
 		}
+	}
+
+	private void memberMenu() {
+		System.out.println("회원 메뉴입니다.");
+		int menu;
+		
+		do {
+			printMemberMenu();
+			menu = nextInt();
+			
+			try {
+				runMemberMenu(menu);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} while (menu != 4);
+	}
+
+	private void printMemberMenu() {
+		System.out.println("1.정보수정\n2.예약하기\n3.예약확인하기\n4.로그아웃");
+		System.out.print("메뉴 선택: ");
+	}
+
+	private void runMemberMenu(int menu) {
+		switch(menu) {
+			case 1:
+				editMember();
+			break;
+			case 2:
+				reservation();
+			break;
+			case 3:
+				viewReservation();
+			break;
+			case 4:
+				System.out.println("로그아웃 되었습니다.");
+			break;
+			default: 
+		}
+		
+	}
+
+	private void editMember() {
+		System.out.println("내 정보 수정");
+		
+	}
+
+	private void reservation() {
+		System.out.println("[예약페이지 입니다]");
+		
+	}
+
+	private void viewReservation() {
+		System.out.println("[내 예약 확인]");
+		
 	}
 
 	private void register() {
@@ -69,7 +125,8 @@ public class ReservationManager implements Program {
 		} else {
 			Member mb = new Member(id, name, passWord, email, false);
 			memberList.add(mb);
-			System.out.println("회원가입이 완료되었습니다.");
+			System.out.println("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");
+			login();
 		}
 	}
 
