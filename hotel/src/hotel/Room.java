@@ -3,9 +3,11 @@ package hotel;
 import java.io.Serializable;
 import java.util.Objects;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class Room implements Serializable {
 	private static final long serialVersionUID = -4287018336496117093L;
 	
