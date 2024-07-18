@@ -13,6 +13,8 @@ public class ReservationManager implements Program {
 	
 	private Scanner scan = new Scanner(System.in);
 	private List<Member> memberList = new ArrayList<Member>();
+	private List<Room> roomList = new ArrayList<Room>();
+	
 	@Override
 	public void printMenu() {
 		System.out.println("[메뉴]");
@@ -101,7 +103,14 @@ public class ReservationManager implements Program {
 
 	private void reservation() {
 		System.out.println("[예약페이지 입니다]");
+		System.out.println("방목록");
+		for(int i=0;i<roomList.size();i++) {
+			System.out.println((i + 1) + "번 " + roomList.get(i));
+			System.out.println("=================================");
+		}
 		
+		System.out.print("예약할 방 번호 선택 : ");
+		int roomNum = scan.nextInt();
 	}
 
 	private void viewReservation() {
@@ -143,14 +152,14 @@ public class ReservationManager implements Program {
 		} else {
 			System.out.println("회원님의 비밀번호는 " + tmps.get(0).getPassWord() + "입니다.");
 		}
-		
-		
 	}
 
 	@Override
 	public void run() {
 		int menu;
-		
+		roomList.add(new Room(101, 4, 5000, "스위트", true));
+		roomList.add(new Room(102, 2, 2500, "더블", true));
+		roomList.add(new Room(103, 1, 1500, "싱글", true));
 		do {
 			printMenu();
 			menu = nextInt();
