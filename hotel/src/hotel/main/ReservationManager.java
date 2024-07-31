@@ -1,19 +1,16 @@
-package hotel;
+package hotel.main;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
+import hotel.controller.MemberController;
 import program.Program;
 
 public class ReservationManager implements Program {
 
-	
 	private Scanner scan = new Scanner(System.in);
-	private List<Member> memberList = new ArrayList<Member>();
-	private List<Room> roomList = new ArrayList<Room>();
+	private MemberController memberController = new MemberController(scan);
+	
 	
 	@Override
 	public void printMenu() {
@@ -46,14 +43,12 @@ public class ReservationManager implements Program {
 		String id = scan.next();
 		System.out.print("비밀번호: ");
 		String passWord = scan.next();
-		List<Member> tmps = memberList.stream().filter(m->m.getId().equals(id)&&m.getPassWord().equals(passWord)).collect(Collectors.toList());
-		if(tmps.size() == 0) {
-			System.out.println("일치하는 회원이 없거나 아이디 혹은 비밀번호를 잘못 입력하였습니다.");
+		/*
+		 * System.out.println("일치하는 회원이 없거나 아이디 혹은 비밀번호를 잘못 입력하였습니다.");
 			return;
-		} else {
 			System.out.println(tmps.get(0).getName() + " 회원님 어서오세요.");
 			memberMenu();
-		}
+		 * */
 	}
 
 	private void memberMenu() {
@@ -103,14 +98,23 @@ public class ReservationManager implements Program {
 
 	private void reservation() {
 		System.out.println("[예약페이지 입니다]");
+		/*
+		if(roomList.size() == 0) {
+			
+		}
 		System.out.println("방목록");
 		for(int i=0;i<roomList.size();i++) {
+			
 			System.out.println((i + 1) + "번 " + roomList.get(i));
 			System.out.println("=================================");
 		}
 		
-		System.out.print("예약할 방 번호 선택 : ");
-		int roomNum = scan.nextInt();
+		System.out.print("예약할 번호 선택 : ");
+		int roomNum = scan.nextInt() - 1;
+		
+		Room room = roomList.get(roomNum);
+		
+		System.out.println(room);*/
 	}
 
 	private void viewReservation() {
@@ -127,7 +131,7 @@ public class ReservationManager implements Program {
 		String name = scan.next();
 		System.out.print("이메일: ");
 		String email = scan.next();
-		Member tmp = new Member(id, name, null, null, false);
+		/*Member tmp = new Member(id, name, null, null, false);
 		if(memberList.contains(tmp)) {
 			System.out.println("이미 등록된 아이디입니다.");
 			return;
@@ -136,7 +140,7 @@ public class ReservationManager implements Program {
 			memberList.add(mb);
 			System.out.println("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");
 			login();
-		}
+		}*/
 	}
 
 	private void findPassWord() {
@@ -145,21 +149,21 @@ public class ReservationManager implements Program {
 		System.out.print("이메일: ");
 		String email = scan.next();
 		
-		List<Member> tmps = memberList.stream().filter(m->m.getId().equals(id)&&m.getEmail().equals(email)).collect(Collectors.toList());
+		/*List<Member> tmps = memberList.stream().filter(m->m.getId().equals(id)&&m.getEmail().equals(email)).collect(Collectors.toList());
 		if(tmps.size() == 0) {
 			System.out.println("일치하는 회원이 없거나 회원이 아닙니다.");
 			return;
 		} else {
 			System.out.println("회원님의 비밀번호는 " + tmps.get(0).getPassWord() + "입니다.");
-		}
+		}*/
 	}
 
 	@Override
 	public void run() {
 		int menu;
-		roomList.add(new Room(101, 4, 5000, "스위트", true));
+		/*roomList.add(new Room(101, 4, 5000, "스위트", true));
 		roomList.add(new Room(102, 2, 2500, "더블", true));
-		roomList.add(new Room(103, 1, 1500, "싱글", true));
+		roomList.add(new Room(103, 1, 1500, "싱글", true));*/
 		do {
 			printMenu();
 			menu = nextInt();

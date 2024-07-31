@@ -46,7 +46,7 @@ public class Room implements Serializable {
 	//현재 있는 방 간단하게 출력하기 위하여 선언
 	@Override
 	public String toString() {
-		return roomNum + "호 방 이름:" + roomName + "\n1박 가격: " + roomPrice + " 정원: " + roomType;
+		return roomNum + "호 방 이름:" + roomName + " 1박 가격: " + roomPrice + " 정원: " + roomType;
 	}	
 
 }

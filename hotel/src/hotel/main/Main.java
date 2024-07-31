@@ -1,6 +1,6 @@
-package hotel;
+package hotel.main;
 
-public class Menu {
+public class Main {
 
 	public static void main(String[] args) {
 		ReservationManager rm = new ReservationManager();
