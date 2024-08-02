@@ -75,4 +75,7 @@ public class RoomServiceImp implements RoomService {
 		return roomDao.selectRoom(room);
 	} //end RoomVO selectRoom
 	
+	public RoomVO roomList(RoomVO room) {
+		return roomDao.roomList(room);
+	}
 }

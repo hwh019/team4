@@ -45,8 +45,7 @@ public class RoomVO {
 		return  "[" + isUse + "] " + "[" + ro_num + "호 : "+ ro_name +"] 1박: " + ro_price + " 정원: " + ro_max_person + "명";
 	}
 
-	public RoomVO(int roomNum, String roomName) {
+	public RoomVO(int roomNum) {
 		this.ro_num = roomNum;
-		this.ro_name = roomName;
 	}
 }

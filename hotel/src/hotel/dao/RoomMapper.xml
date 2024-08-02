@@ -6,6 +6,9 @@
 	<select id="selectRoom" resultType="RoomVO">
 		select * from room where ro_use = Y
 	</select>
+	<select id="roomList" resultType="RoomVO">
+		select * from room
+	</select>
 	<insert id="insertRoom">
 		insert into room
 		set ro_num = #{ro.ro_num},

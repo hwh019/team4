@@ -8,10 +8,13 @@ public interface RoomDAO {
 
 	RoomVO selectRoom(@Param("ro")RoomVO room);
 
+	RoomVO roomList(@Param("ro")RoomVO room);
+
 	boolean insertRoom(@Param("ro")RoomVO room);
 
 	boolean updateRoom(@Param("new")RoomVO newRoom);
 
 	boolean deleteRoom(@Param("ro")RoomVO room);
+
 
 }

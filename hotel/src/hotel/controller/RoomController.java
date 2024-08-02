@@ -27,6 +27,10 @@ public class RoomController {
 	private RoomVO inputRoomExpand() {
 		RoomVO room = inputRoom();
 		
+		System.out.println("방 이름: ");
+		scan.nextLine();
+		String roomName = scan.nextLine();
+		
 		System.out.print("1박 가격: ");
 		int price = scan.nextInt();
 		
@@ -40,6 +44,7 @@ public class RoomController {
 			use = 'N';
 		}
 		
+		room.setRo_name(roomName);
 		room.setRo_price(price);
 		room.setRo_max_person(max);
 		room.setRo_use(use);
@@ -51,10 +56,10 @@ public class RoomController {
 		System.out.print("호수: ");
 		int roomNum = scan.nextInt();
 		
-		System.out.println("방 이름: ");
-		scan.nextLine();
-		String roomName = scan.nextLine();
-		
-		return new RoomVO(roomNum, roomName);
+		return new RoomVO(roomNum);
 	} //end inputRoom
+	
+	public void updateRoom() {
+		
+	} //end updateRoom
 }
