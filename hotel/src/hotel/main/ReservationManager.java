@@ -46,23 +46,39 @@ public class ReservationManager implements Program {
 		String inputAdminKey = scan.next();
 		
 		if(isAdminKey.equals(inputAdminKey)) {
-			System.out.println("[관리자 메뉴]");
+			System.out.println("[관리자 로그인]");
+			adminLogin();
 		} else {
 			System.out.println("관리자키를 확인해주세요.");
 			return;
 		}
 	} //end adminOnly
 	
+	private void adminLogin() { 
+		MemberVO chkMb = memberController.inputMember();
+		MemberVO mb = memberController.chkMember(chkMb);
+		if(mb == null) {
+			System.out.println("아이디 혹은 비밀번호가 일치하지 않습니다.");
+			return;
+		} 
+		if(mb.getMb_is_admin() != 'Y') {
+			System.out.println("관리자 권한이 없습니다.");
+			return;
+		}
+		System.out.println(mb.getMb_name() + "님 관리자 모드로 접속했습니다.");
+		adminMenu();
+	}
+
 	private void adminMenu() {
 		System.out.println("관리자 메뉴입니다.");
 		int menu;
 		
 		do {
-			printMemberMenu();
+			printAdminMenu();
 			menu = nextInt();
 			
 			try {
-				runMemberMenu(menu);
+				runAdminMenu(menu);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -70,9 +86,27 @@ public class ReservationManager implements Program {
 	} //end adminMenu
 
 	private void printAdminMenu() {
-		System.out.println("1.정보수정\n2.예약하기\n3.예약확인하기\n4.로그아웃");
+		System.out.println("1.회원관리\n2.방관리\n3.예약관리\n4.로그아웃");
 		System.out.print("메뉴 선택: ");
 	} //end printAdminMenu
+	
+	private void runAdminMenu(int menu) {
+		switch(menu) {
+			case 1:
+				System.out.println("회원관리");
+			break;
+			case 2:
+				System.out.println("방관리");
+			break;
+			case 3:
+				System.out.println("예약관리");
+			break;
+			case 4: 
+				System.out.println("로그아웃 되었습니다.");
+			break;
+			default: 
+		}
+	} //end runAdminMenu
 
 	private void login() {
 		MemberVO chkMb = memberController.inputMember();
@@ -122,7 +156,6 @@ public class ReservationManager implements Program {
 			break;
 			default: 
 		}
-		
 	}
 
 	private void editMember() {
