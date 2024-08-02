@@ -23,6 +23,9 @@ CREATE TABLE IF NOT EXISTS `hotel`.`room` (
   `ro_name` VARCHAR(20) NOT NULL,
   UNIQUE INDEX `ro_num_UNIQUE` (`ro_num` ASC) VISIBLE,
   PRIMARY KEY (`ro_id`));
+
+ALTER TABLE `hotel`.`room` 
+ADD COLUMN `ro_use` CHAR(1) NOT NULL DEFAULT 'Y' AFTER `ro_name`;
   
   CREATE TABLE IF NOT EXISTS `hotel`.`reservation` (
   `rv_id` BIGINT NOT NULL,
