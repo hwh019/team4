@@ -9,7 +9,7 @@
 	]]>
 	</select>
 	<select id="roomList" resultType="RoomVO">
-		select * from room
+		select * from room where ro_num = #{ro.ro_num}
 	</select>
 	<insert id="insertRoom">
 		insert into room

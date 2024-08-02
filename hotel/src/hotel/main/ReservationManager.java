@@ -168,8 +168,12 @@ public class ReservationManager implements Program {
 
 	private void reservation() {
 		System.out.println("[예약페이지 입니다]");
-		System.out.println("[예약 가능한 방]");
 		RoomVO room = roomController.selectRoom();
+		if(room == null) {
+			System.out.println("예약 가능한 방이 존재하지 않습니다.");
+			return;
+		}
+		System.out.println("[예약 가능한 방]");
 		System.out.println(room);
 		/*
 		if(roomList.size() == 0) {
