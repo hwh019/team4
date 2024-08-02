@@ -160,6 +160,7 @@ public class CustomerManager {
 
 	private void deleteUserInfo() {
 		memberController.deleteMember(loginmember); 
+		System.out.println("프로그램을 종료합니다.");
 		//실행 종료
 		System.exit(0);
 	}
