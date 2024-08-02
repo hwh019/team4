@@ -13,9 +13,9 @@ public class RoomVO {
 	private int ro_price; //1박 가격
 	private int ro_max_person; //최대 예약 인원수
 	private String ro_name; //방이름
-	private int ro_use; //방 예약 가능 여부 Y / N 으로 판별
+	private char ro_use; //방 예약 가능 여부 Y / N 으로 판별
 	
-	public RoomVO(int ro_num, int ro_max_person, String ro_name, int ro_use) {
+	public RoomVO(int ro_num, int ro_max_person, String ro_name, char ro_use) {
 		this.ro_num = ro_num;
 		this.ro_max_person = ro_max_person;
 		this.ro_name = ro_name;
@@ -43,5 +43,10 @@ public class RoomVO {
 	public String toString() {
 		String isUse = ro_use == 'Y' ? "가능" : "불가능";
 		return  "[" + isUse + "] " + "[" + ro_num + "호 : "+ ro_name +"] 1박: " + ro_price + " 정원: " + ro_max_person + "명";
+	}
+
+	public RoomVO(int roomNum, String roomName) {
+		this.ro_num = roomNum;
+		this.ro_name = roomName;
 	}
 }
