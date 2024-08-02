@@ -74,4 +74,8 @@ public class MemberServiceImp implements MemberService {
 	public MemberVO selectMember(MemberVO mb) {
 		return memberDao.selectMember(mb);
 	} //end MemberVO selectMember
+	
+	public MemberVO loginMember(MemberVO mb) {
+		return memberDao.loginMember(mb);
+	} //end MemberVO loginMember
 }
