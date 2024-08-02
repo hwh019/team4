@@ -4,13 +4,16 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import hotel.controller.MemberController;
+import hotel.controller.RoomController;
 import hotel.model.vo.MemberVO;
+import hotel.model.vo.RoomVO;
 import program.Program;
 
 public class ReservationManager implements Program {
 
 	private Scanner scan = new Scanner(System.in);
 	private MemberController memberController = new MemberController(scan);
+	private RoomController roomController = new RoomController(scan);
 	
 	
 	@Override
@@ -166,6 +169,8 @@ public class ReservationManager implements Program {
 	private void reservation() {
 		System.out.println("[예약페이지 입니다]");
 		System.out.println("[예약 가능한 방]");
+		RoomVO room = roomController.selectRoom();
+		System.out.println(room);
 		/*
 		if(roomList.size() == 0) {
 			

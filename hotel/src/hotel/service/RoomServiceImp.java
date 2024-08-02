@@ -34,7 +34,7 @@ public class RoomServiceImp implements RoomService {
 			return false;
 		}
 		
-		RoomVO dbroom = roomDao.selectRoom(room);
+		RoomVO dbroom = roomDao.roomList(room);
 		if(dbroom != null) {
 			return false;
 		}
@@ -46,7 +46,7 @@ public class RoomServiceImp implements RoomService {
 		if(room == null) {
 			return false;
 		}
-		RoomVO dbroom = roomDao.selectRoom(room);
+		RoomVO dbroom = roomDao.roomList(room);
 		return dbroom !=  null;
 	} //end boolean contains
 	
@@ -54,9 +54,9 @@ public class RoomServiceImp implements RoomService {
 		if(room == null || newRoom == null) {
 			return false;
 		}
-		room = roomDao.selectRoom(room);
+		room = roomDao.roomList(room);
 		
-		RoomVO dbRoom = roomDao.selectRoom(newRoom);
+		RoomVO dbRoom = roomDao.roomList(newRoom);
 		if(dbRoom != null && !room.equals(dbRoom)) {
 			return false;
 		}
@@ -71,8 +71,8 @@ public class RoomServiceImp implements RoomService {
 		return roomDao.deleteRoom(room);
 	} //end boolean deleteRoom
 	
-	public RoomVO selectRoom(RoomVO room) {
-		return roomDao.selectRoom(room);
+	public RoomVO selectRoom() {
+		return roomDao.selectRoom();
 	} //end RoomVO selectRoom
 	
 	public RoomVO roomList(RoomVO room) {

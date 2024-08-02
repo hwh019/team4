@@ -6,7 +6,7 @@ import hotel.model.vo.RoomVO;
 
 public interface RoomDAO {
 
-	RoomVO selectRoom(@Param("ro")RoomVO room);
+	RoomVO selectRoom();
 
 	RoomVO roomList(@Param("ro")RoomVO room);
 

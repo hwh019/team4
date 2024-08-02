@@ -62,4 +62,8 @@ public class RoomController {
 	public void updateRoom() {
 		
 	} //end updateRoom
+
+	public RoomVO selectRoom() {
+		return roomSerivce.selectRoom();
+	}
 }
