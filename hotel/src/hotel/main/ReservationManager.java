@@ -175,23 +175,8 @@ public class ReservationManager implements Program {
 		}
 		System.out.println("[예약 가능한 방]");
 		System.out.println(room);
-		/*
-		if(roomList.size() == 0) {
-			
-		}
-		System.out.println("방목록");
-		for(int i=0;i<roomList.size();i++) {
-			
-			System.out.println((i + 1) + "번 " + roomList.get(i));
-			System.out.println("=================================");
-		}
-		
-		System.out.print("예약할 번호 선택 : ");
-		int roomNum = scan.nextInt() - 1;
-		
-		Room room = roomList.get(roomNum);
-		
-		System.out.println(room);*/
+		System.out.print("예약할 방 호수: ");
+		int roomNum = scan.nextInt();
 	}
 
 	private void viewReservation() {
