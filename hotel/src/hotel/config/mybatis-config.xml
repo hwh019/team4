@@ -26,5 +26,7 @@
 	
 	<mappers>
 		<mapper resource="hotel/dao/MemberMapper.xml"/>
+		<mapper resource="hotel/dao/RoomMapper.xml"/>
+		<mapper resource="hotel/dao/ReservationMapper.xml"/>
 	</mappers>
 </configuration>
