@@ -165,6 +165,7 @@ public class ReservationManager implements Program {
 
 	private void reservation() {
 		System.out.println("[예약페이지 입니다]");
+		System.out.println("[예약 가능한 방]");
 		/*
 		if(roomList.size() == 0) {
 			
@@ -203,9 +204,6 @@ public class ReservationManager implements Program {
 	@Override
 	public void run() {
 		int menu;
-		/*roomList.add(new Room(101, 4, 5000, "스위트", true));
-		roomList.add(new Room(102, 2, 2500, "더블", true));
-		roomList.add(new Room(103, 1, 1500, "싱글", true));*/
 		do {
 			printMenu();
 			menu = nextInt();
