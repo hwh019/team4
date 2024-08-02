@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import hotel.controller.MemberController;
+import hotel.model.vo.MemberVO;
 import program.Program;
 
 public class ReservationManager implements Program {
@@ -15,7 +16,7 @@ public class ReservationManager implements Program {
 	@Override
 	public void printMenu() {
 		System.out.println("[메뉴]");
-		System.out.println("1.로그인\n2.회원등록\n3.비밀번호 찾기\n4.종료");
+		System.out.println("1.로그인\n2.회원등록\n3.관리자모드\n4.종료");
 		System.out.print("메뉴 선택: ");
 	}
 
@@ -26,10 +27,10 @@ public class ReservationManager implements Program {
 				login();
 			break;
 			case 2:
-				register();
+				memberController.insertMember();
 			break;
 			case 3:
-				findPassWord();
+				adminOnly();
 			break;
 			case 4:
 				System.out.println("프로그램이 종료되었습니다.");
@@ -38,17 +39,50 @@ public class ReservationManager implements Program {
 		}
 	}
 
-	private void login() {
-		System.out.print("아이디: ");
-		String id = scan.next();
-		System.out.print("비밀번호: ");
-		String passWord = scan.next();
-		/*
-		 * System.out.println("일치하는 회원이 없거나 아이디 혹은 비밀번호를 잘못 입력하였습니다.");
+	private void adminOnly() {
+		System.out.println("[관리자 메뉴키]");
+		String isAdminKey = "admin1234"; //관리자 메뉴 접근 키
+		System.out.print("관리자 메뉴 키를 입력하세요: ");
+		String inputAdminKey = scan.next();
+		
+		if(isAdminKey.equals(inputAdminKey)) {
+			System.out.println("[관리자 메뉴]");
+		} else {
+			System.out.println("관리자키를 확인해주세요.");
 			return;
-			System.out.println(tmps.get(0).getName() + " 회원님 어서오세요.");
-			memberMenu();
-		 * */
+		}
+	} //end adminOnly
+	
+	private void adminMenu() {
+		System.out.println("관리자 메뉴입니다.");
+		int menu;
+		
+		do {
+			printMemberMenu();
+			menu = nextInt();
+			
+			try {
+				runMemberMenu(menu);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} while (menu != 4);
+	} //end adminMenu
+
+	private void printAdminMenu() {
+		System.out.println("1.정보수정\n2.예약하기\n3.예약확인하기\n4.로그아웃");
+		System.out.print("메뉴 선택: ");
+	} //end printAdminMenu
+
+	private void login() {
+		MemberVO chkMb = memberController.inputMember();
+		MemberVO mb = memberController.chkMember(chkMb);
+		if(mb == null) {
+			System.out.println("아이디 혹은 비밀번호가 일치하지 않습니다.");
+			return;
+		} 
+		System.out.println(mb.getMb_name() + " 회원님 어서오세요.");
+		memberMenu();
 	}
 
 	private void memberMenu() {
@@ -83,7 +117,7 @@ public class ReservationManager implements Program {
 			case 3:
 				viewReservation();
 			break;
-			case 4:
+			case 4: 
 				System.out.println("로그아웃 되었습니다.");
 			break;
 			default: 
@@ -92,8 +126,8 @@ public class ReservationManager implements Program {
 	}
 
 	private void editMember() {
-		System.out.println("내 정보 수정");
-		
+		System.out.println("[내 정보 수정]");
+		memberController.updateMember();
 	}
 
 	private void reservation() {
@@ -122,41 +156,16 @@ public class ReservationManager implements Program {
 		
 	}
 
-	private void register() {
-		System.out.print("아이디: ");
-		String id = scan.next();
-		System.out.print("비밀번호: ");
-		String passWord = scan.next();
-		System.out.print("이름: ");
-		String name = scan.next();
-		System.out.print("이메일: ");
-		String email = scan.next();
-		/*Member tmp = new Member(id, name, null, null, false);
-		if(memberList.contains(tmp)) {
-			System.out.println("이미 등록된 아이디입니다.");
-			return;
-		} else {
-			Member mb = new Member(id, name, passWord, email, false);
-			memberList.add(mb);
-			System.out.println("회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.");
-			login();
-		}*/
-	}
-
-	private void findPassWord() {
-		System.out.print("아이디: ");
-		String id = scan.next();
-		System.out.print("이메일: ");
-		String email = scan.next();
-		
-		/*List<Member> tmps = memberList.stream().filter(m->m.getId().equals(id)&&m.getEmail().equals(email)).collect(Collectors.toList());
-		if(tmps.size() == 0) {
-			System.out.println("일치하는 회원이 없거나 회원이 아닙니다.");
-			return;
-		} else {
-			System.out.println("회원님의 비밀번호는 " + tmps.get(0).getPassWord() + "입니다.");
-		}*/
-	}
+//	private void findPassWord() {
+//		MemberVO chkMb = memberController.inputMember();
+//		MemberVO mb = memberController.chkMember(chkMb);
+//		if(mb == null) {
+//			System.out.println("일치하는 회원이 없거나 회원이 아닙니다.");
+//			return;
+//		} else {
+//			System.out.println("회원님의 비밀번호는 " + mb.getMb_password() + "입니다.");
+//		}
+//	}
 
 	@Override
 	public void run() {
