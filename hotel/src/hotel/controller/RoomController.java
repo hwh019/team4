@@ -1,5 +1,7 @@
 package hotel.controller;
 
-public class RoomController {
+import java.util.Scanner;
 
+public class RoomController {
+	private Scanner scan;
 }
