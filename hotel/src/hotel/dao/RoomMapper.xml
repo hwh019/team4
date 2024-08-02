@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hotel.dao.MemberDAO">
+	<select id="selectRoom" resultType="RoomVO">
+		select * from room where ro_use = Y
+	</select>
+	<insert id="insertRoom">
+		insert into room
+		set ro_num = #{new.ro_num},
+			ro_price = #{new.ro_price},
+			ro_max_person = #{new.ro_max_person},
+			ro_name = #{new.ro_name},
+			ro_use = #{new.ro_use}
+	</insert>
+	<delete id="deleteRoom">
+		delete from room 
+		where
+			ro_id = #{ro_id}
+	</delete>
+	<update id="updateRoom">
+		update room
+		set	ro_num = #{new.ro_num},
+			ro_price = #{new.ro_price},
+			ro_max_person = #{new.ro_max_person},
+			ro_name = #{new.ro_name},
+			ro_use = #{new.ro_use}
+		where ro_no = #{new.ro_no}
+	</update>
+</mapper>
+
+
