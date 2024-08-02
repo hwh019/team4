@@ -26,19 +26,16 @@ public class RoomController {
 
 	private RoomVO inputRoomExpand() {
 		RoomVO room = inputRoom();
-		/*
-		 * private int ro_price; //1박 가격
-			private int ro_max_person; //최대 예약 인원수
-			private int ro_use; //방 예약 가능 여부 Y / N 으로 판별
-		 * */
+		
 		System.out.print("1박 가격: ");
 		int price = scan.nextInt();
+		
 		System.out.print("정원: ");
 		int max = scan.nextInt();
+		
 		System.out.print("예약 가능 여부 (Y / N) : ");
 		char use = scan.next().charAt(0);
 		use = Character.toUpperCase(use); //무족권 대 문 자 
-		
 		if(use != 'N' && use != 'Y') {
 			use = 'N';
 		}
@@ -46,8 +43,9 @@ public class RoomController {
 		room.setRo_price(price);
 		room.setRo_max_person(max);
 		room.setRo_use(use);
+		
 		return room;
-	}
+	} //end inputRoomExpand
 
 	private RoomVO inputRoom() {
 		System.out.print("호수: ");
@@ -58,5 +56,5 @@ public class RoomController {
 		String roomName = scan.nextLine();
 		
 		return new RoomVO(roomNum, roomName);
-	}
+	} //end inputRoom
 }
