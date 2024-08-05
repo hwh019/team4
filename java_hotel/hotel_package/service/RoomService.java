@@ -15,4 +15,8 @@ public interface RoomService {
 	List<RoomVO> showroom_all();
 
 	boolean insertRoom(RoomVO room);
+	
+	boolean updateRoom(RoomVO room,RoomVO newRoom);
+	
+	boolean deleteRoom(RoomVO room);
 }

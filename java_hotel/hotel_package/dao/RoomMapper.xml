@@ -8,15 +8,17 @@
 		select * from room
 		where
 			ro_max_person >= #{rv_stay_person};
+		order by ro_num ASC
 		]]>
 	</select>
 	<select id="showRoom" resultType="RoomVO">
 		select * from room
 		where
 			ro_num = #{ro_num}
+		order by ro_num ASC
 	</select>
 	<select id="showroom_all" resultType="RoomVO">
-		select * from room
+		select * from room order by ro_num ASC
 	</select>
 	<insert id="insertRoom">
 		insert into room
@@ -25,4 +27,16 @@
 			ro_max_person = #{ro.ro_max_person},
 			ro_name = #{ro.ro_name}
 	</insert>
+	<update id="updateRoom">
+		update room 
+		set ro_price = #{new.ro_price},
+			ro_max_person = #{new.ro_max_person},
+			ro_name = #{new.ro_name}
+		where ro_id = #{new.ro_id}
+	</update>
+	<delete id="deleteRoom">
+		delete from room 
+		where
+			ro_id = #{ro.ro_id}
+	</delete>
 </mapper>

@@ -101,7 +101,9 @@ public class AdminManager {
 			System.out.println("방 관리");
 			System.out.println("1. 방 목록");
 			System.out.println("2. 방 등록");
-			System.out.println("3. 뒤로가기");
+			System.out.println("3. 방 수정");
+			System.out.println("4. 방 삭제");
+			System.out.println("5. 뒤로가기");
 			System.out.print("입력 :");
 			int choice = scanner.nextInt();
 			scanner.nextLine();
@@ -114,6 +116,12 @@ public class AdminManager {
 				insertRoom();
 				break;
 			case 3:
+				updateRoom();
+				break;
+			case 4:
+				deleteRoom();
+				break;
+			case 5:
 				return;
 			default:
 				System.out.println("잘못된 선택입니다. 다시 시도하세요.");
@@ -121,8 +129,27 @@ public class AdminManager {
 		}
 	}
 
+
+	private void updateRoom() {
+		System.out.println("[방 수정]");
+		System.out.println("[방 목록]\n");
+		roomController.AllRooms();
+		System.out.println("========================");
+		System.out.print("수정할 ");
+		roomController.updateRoom();
+	} //end updateRoom
+
+	private void deleteRoom() {
+		System.out.println("[방 삭제]");
+		System.out.println("[방 목록]\n");
+		roomController.AllRooms();
+		System.out.println("========================");
+		System.out.print("삭제할 ");
+		roomController.deleteRoom();
+	} //end deleteRoom
+	
 	private void insertRoom() {
-		System.out.println("방 등록 페이지 입니다.");
+		System.out.println("[방 등록]");
 		System.out.println("[방 목록]\n");
 		roomController.AllRooms();
 		System.out.println("========================");

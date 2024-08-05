@@ -47,6 +47,7 @@ public class RoomServiceImp implements RoomService {
 		return roomDao.showroom_all();
 	}
 	
+	@Override
 	public boolean insertRoom(RoomVO room) {
 		if(room == null) {
 			return false;
@@ -59,5 +60,28 @@ public class RoomServiceImp implements RoomService {
 
 		return roomDao.insertRoom(room);
 	} //end boolean insertRoom
+
+	@Override
+	public boolean updateRoom(RoomVO room, RoomVO newRoom) {
+		if(room == null || newRoom == null) {
+			return false;
+		}
+		room = roomDao.showRoom(room.getRo_num());
+		
+		RoomVO dbRoom = roomDao.showRoom(newRoom.getRo_num());
+		if(dbRoom != null && !room.equals(dbRoom)) {
+			return false;
+		}
+		newRoom.setRo_id(room.getRo_id());
+		return roomDao.updateRoom(newRoom);
+	} //end boolean updateRoom
+
+	@Override
+	public boolean deleteRoom(RoomVO room) {
+		if(room == null) {
+			return false;
+		}
+		return roomDao.deleteRoom(room);
+	} //end boolean deleteRoom
 
 }
