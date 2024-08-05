@@ -1,11 +1,12 @@
-package java_hotel.dao;
+package dao;
 
 import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-import java_hotel.model.vo.RoomVO;
+import model.vo.RoomVO;
+
 
 public interface RoomDAO {
 

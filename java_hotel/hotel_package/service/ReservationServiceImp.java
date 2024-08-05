@@ -1,4 +1,4 @@
-package java_hotel.service;
+package service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,16 +11,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java_hotel.dao.MemberDAO;
-import java_hotel.dao.ReservationDAO;
-import java_hotel.model.vo.ReservationVO;
+import dao.ReservationDAO;
+import model.vo.ReservationVO;
+
 
 public class ReservationServiceImp implements ReservationService {
 
 	private ReservationDAO reservationDao;
 
 	public ReservationServiceImp() {
-		String resource = "java_hotel/config/mybatis-config.xml";
+		String resource = "config/mybatis-config.xml";
 		InputStream inputStream;
 		SqlSession session;
 		try {

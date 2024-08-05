@@ -1,10 +1,11 @@
-package java_hotel.controller;
+package controller;
 
 import java.util.Scanner;
 
-import java_hotel.model.vo.CustomerVO;
-import java_hotel.service.MemberService;
-import java_hotel.service.MemberServiceImp;
+import model.vo.CustomerVO;
+import service.MemberService;
+import service.MemberServiceImp;
+
 
 public class MemberController {
 

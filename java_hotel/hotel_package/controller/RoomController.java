@@ -1,12 +1,12 @@
-package java_hotel.controller;
+package controller;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import java_hotel.model.vo.RoomVO;
-import java_hotel.service.RoomService;
-import java_hotel.service.RoomServiceImp;
+import model.vo.RoomVO;
+import service.RoomService;
+import service.RoomServiceImp;
 
 public class RoomController {
 

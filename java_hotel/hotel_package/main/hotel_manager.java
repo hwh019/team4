@@ -1,4 +1,4 @@
-package java_hotel.main;
+package main;
 
 public class hotel_manager {
 

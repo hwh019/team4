@@ -1,6 +1,6 @@
-package java_hotel.service;
+package service;
 
-import java_hotel.model.vo.CustomerVO;
+import model.vo.CustomerVO;
 
 public interface MemberService {
 

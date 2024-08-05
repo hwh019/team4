@@ -1,4 +1,4 @@
-package java_hotel.controller;
+package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,12 +6,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
-import java_hotel.model.vo.CustomerVO;
-import java_hotel.model.vo.ReservationVO;
-import java_hotel.model.vo.RoomVO;
-import java_hotel.service.ReservationService;
-import java_hotel.service.ReservationServiceImp;
-import java_hotel.service.RoomService;
+import model.vo.CustomerVO;
+import model.vo.ReservationVO;
+import model.vo.RoomVO;
+import service.ReservationService;
+import service.ReservationServiceImp;
+
 
 public class ReservationController {
 

@@ -1,1 +1,6 @@
-/bin/
+/config/
+/controller/
+/dao/
+/main/
+/model/
+/service/

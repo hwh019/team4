@@ -1,11 +1,12 @@
-package java_hotel.main;
+package main;
 
 import java.util.Scanner;
 
-import java_hotel.controller.MemberController;
-import java_hotel.controller.ReservationController;
-import java_hotel.controller.RoomController;
-import java_hotel.model.vo.CustomerVO;
+import controller.MemberController;
+import controller.ReservationController;
+import controller.RoomController;
+import model.vo.CustomerVO;
+
 
 public class AdminManager {
 	private Scanner scanner = new Scanner(System.in);

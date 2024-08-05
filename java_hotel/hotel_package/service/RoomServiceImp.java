@@ -1,8 +1,7 @@
-package java_hotel.service;
+package service;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,15 +10,16 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java_hotel.dao.RoomDAO;
-import java_hotel.model.vo.RoomVO;
+import dao.RoomDAO;
+import model.vo.RoomVO;
+
 
 public class RoomServiceImp implements RoomService {
 
 	private RoomDAO roomDao;
 
 	public RoomServiceImp() {
-		String resource = "java_hotel/config/mybatis-config.xml";
+		String resource = "config/mybatis-config.xml";
 		InputStream inputStream;
 		SqlSession session;
 		try {

@@ -1,4 +1,4 @@
-package java_hotel.service;
+package service;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,22 +9,22 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java_hotel.dao.MemberDAO;
-import java_hotel.model.vo.CustomerVO;
+import dao.MemberDAO;
+import model.vo.CustomerVO;
 
 public class MemberServiceImp implements MemberService {
 
 	private MemberDAO memberDao;
 
 	public MemberServiceImp() {
-		String resource = "java_hotel/config/mybatis-config.xml";
+		String resource = "config/mybatis-config.xml";
 		InputStream inputStream;
 		SqlSession session;
 		try {
 			inputStream = Resources.getResourceAsStream(resource);
 			SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 			session = sessionFactory.openSession(true);
-			memberDao = session.getMapper(MemberDAO.class);
+			memberDao = session.getMapper(MemberDAO.class); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

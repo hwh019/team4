@@ -1,9 +1,10 @@
-package java_hotel.service;
+package service;
 
 import java.util.Date;
 import java.util.List;
 
-import java_hotel.model.vo.RoomVO;
+import model.vo.RoomVO;
+
 
 public interface RoomService {
 

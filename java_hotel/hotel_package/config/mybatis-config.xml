@@ -9,7 +9,7 @@
 	</settings>
 	
 	<typeAliases>
-		<package name="java_hotel.model.vo"/>
+		<package name="model.vo"/>
 	</typeAliases>
 	
 	<environments default="development">
@@ -25,8 +25,8 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource="java_hotel/dao/MemberMapper.xml"/>
-		<mapper resource="java_hotel/dao/ReservationMapper.xml"/>
-		<mapper resource="java_hotel/dao/RoomMapper.xml"/>
+		<mapper resource="dao/MemberMapper.xml"/>
+		<mapper resource="dao/ReservationMapper.xml"/>
+		<mapper resource="dao/RoomMapper.xml"/>
 	</mappers>
 </configuration>
