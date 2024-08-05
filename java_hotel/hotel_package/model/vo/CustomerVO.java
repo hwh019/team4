@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class CustomerVO {
-	
-	private int mb_no; //key
+
+	private int mb_no; // key
 	private String mb_id;
 	private String mb_name;
 	private String mb_password;
@@ -45,9 +45,5 @@ public class CustomerVO {
 		this.mb_password = mb_password;
 		this.mb_email = mb_email;
 	}
-	
-	
 
-
-	
 }

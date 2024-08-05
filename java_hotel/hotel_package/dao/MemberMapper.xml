@@ -29,4 +29,21 @@
 		where 
 			mb_no = #{mb_no}
 	</select>
+		<select id="searchuser_admin" resultType="CustomerVO">
+		select * from member 
+		where 
+			mb_id = #{mb_id}
+	</select>
+	<select id="selectadmin" resultType="CustomerVO">
+		select * from member
+		where 
+			mb_id = #{mb_id}
+		and
+			mb_is_admin = 'Y'
+	</select>
+		<select id="getuser" resultType="CustomerVO">
+		select * from member
+		where 
+			mb_id = #{mb_id}
+	</select>
 </mapper>

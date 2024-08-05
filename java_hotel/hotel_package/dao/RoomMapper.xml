@@ -15,4 +15,7 @@
 		where
 			ro_num = #{ro_num}
 	</select>
+		<select id="showroom_all" resultType="RoomVO">
+		select * from room
+	</select>
 </mapper>

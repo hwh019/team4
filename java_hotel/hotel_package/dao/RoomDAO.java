@@ -9,9 +9,11 @@ import java_hotel.model.vo.RoomVO;
 
 public interface RoomDAO {
 
-	List<RoomVO> selectRoom(@Param("rv_start_date")Date startdate, @Param("rv_end_date")Date enddate, @Param("rv_stay_person")int rv_stay_person);
+	List<RoomVO> selectRoom(@Param("rv_start_date") Date startdate, @Param("rv_end_date") Date enddate,
+			@Param("rv_stay_person") int rv_stay_person);
 
-	RoomVO showRoom(@Param("ro_num")int ro_num);
+	RoomVO showRoom(@Param("ro_num") int ro_num);
 
+	List<RoomVO> showroom_all();
 
 }

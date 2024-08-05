@@ -11,5 +11,6 @@ public interface RoomService {
 
 	RoomVO showroom(int ro_num);
 
+	List<RoomVO> showroom_all();
 
 }

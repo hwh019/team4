@@ -23,7 +23,7 @@
 	</select>
 	<insert id="insert_reservation">
 		insert into reservation(rv_date, rv_room_num, rv_start_date, rv_end_date, rv_status, rv_total_price, rv_stay_person, mb_id)
-		values(#{rv_date}, #{rv_room_num}, #{rv_start_date}, #{rv_end_date}, '상태', #{rv_total_price}, #{rv_stay_person}, #{mb_id})
+		values(#{rv_date}, #{rv_room_num}, #{rv_start_date}, #{rv_end_date}, '체크인 전', #{rv_total_price}, #{rv_stay_person}, #{mb_id})
 	</insert>
 	<select id="selectroom" resultType="ReservationVO">
 		<![CDATA[
@@ -63,5 +63,12 @@
 			rv_total_price = #{rv_total_price}
 		where
 			rv_id = #{rv_id}	
+	</update>
+	<update id="update_res_status">
+		update reservation
+		set
+			rv_status = #{date}
+		where
+			rv_id = #{rv_id}
 	</update>
 </mapper>

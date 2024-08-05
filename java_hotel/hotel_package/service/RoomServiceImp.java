@@ -14,9 +14,9 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import java_hotel.dao.RoomDAO;
 import java_hotel.model.vo.RoomVO;
 
-public class RoomServiceImp implements RoomService{
-	  
-	private RoomDAO roomDao; 
+public class RoomServiceImp implements RoomService {
+
+	private RoomDAO roomDao;
 
 	public RoomServiceImp() {
 		String resource = "java_hotel/config/mybatis-config.xml";
@@ -32,16 +32,19 @@ public class RoomServiceImp implements RoomService{
 		}
 	}
 
-
 	@Override
 	public List<RoomVO> selectRoom(Date startdate, Date enddate, int rv_stay_person) {
 		return roomDao.selectRoom(startdate, enddate, rv_stay_person);
 	}
 
-
 	@Override
 	public RoomVO showroom(int ro_num) {
 		return roomDao.showRoom(ro_num);
+	}
+
+	@Override
+	public List<RoomVO> showroom_all() {
+		return roomDao.showroom_all();
 	}
 
 }

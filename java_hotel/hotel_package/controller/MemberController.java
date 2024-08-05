@@ -28,8 +28,6 @@ public class MemberController {
 		return memberService.Register(mb_id, mb_password, mb_name, mb_email);
 	}
 
-
-
 	public CustomerVO userLogin() {
 		System.out.print("아이디: ");
 		String mb_id = scanner.nextLine();
@@ -50,12 +48,11 @@ public class MemberController {
 		return memberService.update(mb_password, mb_name, mb_email, loginmember.getMb_id());
 	}
 
-
 	public void deleteMember(CustomerVO loginmember) {
 		System.out.println("정말로 탈퇴하시겠습니까? (Y | N)");
 		char input = scanner.next().charAt(0);
-		if(input == 'y' || input == 'Y') {
-			if(memberService.deleteMember(loginmember)) {
+		if (input == 'y' || input == 'Y') {
+			if (memberService.deleteMember(loginmember)) {
 				System.out.println("회원탈퇴를 완료했습니다.");
 				return;
 			}
@@ -72,6 +69,34 @@ public class MemberController {
 		return memberService.getUser(loginmember.getMb_no());
 	}
 
+	public CustomerVO adminLogin(String adminId, String adminPw) {
+		if (memberService.check_is_admin(adminId)) {
+			// 어드민임
+			return memberService.loginmember(adminId, adminPw);
+		} else {
 
+			return null;
+		}
+	}
+
+	// 해당하는 입력값의 모든 회원들의 정보를 출력 admin빼고;
+	public void searchmember_admin() {
+		System.out.print("아이디: ");
+		String mb_id = scanner.nextLine();
+		if (memberService.printuser_admin(mb_id)) {
+			// 성공
+		} else {
+			// 실패
+			System.out.println("해당하는 회원이 없습니다.");
+
+		}
+	}
+
+	public CustomerVO getUser_admin() {
+		System.out.print("아이디: ");
+		String mb_id = scanner.nextLine();
+		CustomerVO user = memberService.getuser_admin(mb_id);
+		return user;
+	}
 
 }

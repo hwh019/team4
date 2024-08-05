@@ -2,169 +2,197 @@ package java_hotel.main;
 
 import java.util.Scanner;
 
+import java_hotel.controller.MemberController;
+import java_hotel.controller.ReservationController;
+import java_hotel.controller.RoomController;
+import java_hotel.model.vo.CustomerVO;
+
 public class AdminManager {
-    private static Scanner scanner = new Scanner(System.in);
+	private Scanner scanner = new Scanner(System.in);
+	private MemberController memberController = new MemberController(scanner);
+	private ReservationController reservationController = new ReservationController(scanner);
+	private RoomController roomController = new RoomController(scanner);
 
-    public void run() {
-        adminLogin();
-    }
+	private CustomerVO loginadmin;
 
-    private void adminLogin() {
-        System.out.print("관리자 아이디 : ");
-        String adminId = scanner.nextLine();
-        System.out.print("관리자 비밀번호 : ");
-        String adminPw = scanner.nextLine();
+	public void run() {
+		// 방 샘플 데이터
+//        rooms.add(new RoomVO("101"));
+//        rooms.add(new RoomVO("102"));
+//        rooms.add(new RoomVO("103"));
+		// 샘플 데이터를 sql로 추가하는데 좋을거같아서 삭제
+		adminLogin();
+	}
 
-        if ("admin".equals(adminId) && "admin123".equals(adminPw)) {
-            adminMenu();
-        } else {
-            System.out.println("잘못된 아이디 또는 비밀번호입니다.");
-        }
-    }
+	private void adminLogin() {
+		System.out.print("관리자 아이디 : ");
+		String adminId = scanner.nextLine();
+		System.out.print("관리자 비밀번호 : ");
+		String adminPw = scanner.nextLine();
 
-    private void adminMenu() {
-        while (true) {
-            System.out.println("관리자 메뉴");
-            System.out.println("1. 회원관리");
-            System.out.println("2. 방 관리");
-            System.out.println("3. 예약 관리");
-            System.out.println("4. 로그아웃");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+		loginadmin = memberController.adminLogin(adminId, adminPw);
+		if (loginadmin == null) {
+			System.out.println("잘못된 아이디 또는 비밀번호입니다.");
+			return;
+		}
+		adminMenu(loginadmin);
+	}
 
-            switch (choice) {
-                case 1:
-                    manageMembers();
-                    break;
-                case 2:
-                    manageRooms();
-                    break;
-                case 3:
-                    manageReservations();
-                    break;
-                case 4:
-                    return;
-                default:
-                    System.out.println("잘못된 선택입니다. 다시 시도하세요.");
-            }
-        }
-    }
+	private void adminMenu(CustomerVO loginadmin) {
+		while (true) {
+			System.out.println("관리자 메뉴");
+			System.out.println("1. 회원관리");
+			System.out.println("2. 방 관리");
+			System.out.println("3. 예약 관리");
+			System.out.println("4. 로그아웃");
+			System.out.print("입력 :");
+			int choice = scanner.nextInt();
+			scanner.nextLine();
 
-    private void manageMembers() {
-        while (true) {
-            System.out.println("회원관리");
-            System.out.println("1. 회원 정보");
-            System.out.println("2. 회원 정보 수정");
-            System.out.println("3. 회원 정보 삭제");
-            System.out.println("4. 뒤로가기");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+			switch (choice) {
+			case 1:
+				manageMembers();
+				break;
+			case 2:
+				manageRooms();
+				break;
+			case 3:
+				manageReservations();
+				break;
+			case 4:
+				return;
+			default:
+				System.out.println("잘못된 선택입니다. 다시 시도하세요.");
+			}
+		}
+	}
 
-            switch (choice) {
-                case 1:
-                    searchMemberInfo();
-                    break;
-                case 2:
-                    modifyMemberInfo();
-                    break;
-                case 3:
-                    deleteMemberInfo();
-                    break;
-                case 4:
-                    return;
-                default:
-                    System.out.println("잘못된 선택입니다. 다시 시도하세요.");
-            }
-        }
-    }
+	private void manageMembers() {
+		while (true) {
+			System.out.println("회원관리");
+			System.out.println("1. 회원 정보");
+			System.out.println("2. 뒤로가기");
+			System.out.print("입력 :");
+			int choice = scanner.nextInt();
+			scanner.nextLine();
+			switch (choice) {
+			case 1:
+				searchMemberInfo();
+				break;
+			case 2:
+				return;
+			default:
+				System.out.println("잘못된 선택입니다. 다시 시도하세요.");
+			}
+		}
+	}
 
-    private void searchMemberInfo() {
-        System.out.print("검색 (아이디 or 이름 or 전화번호): ");
-        String searchQuery = scanner.nextLine();
-        // 검색 로직 추가
-        System.out.println("검색 결과:");
-        // 결과 출력 로직 추가
-    }
+	// 해당하는 입력값의 모든 회원들의 정보를 출력 admin빼고;
+	private void searchMemberInfo() {
+		memberController.searchmember_admin();
+	}
 
-    private void modifyMemberInfo() {
-        System.out.print("검색 (아이디 or 이름 or 전화번호): ");
-        String searchQuery = scanner.nextLine();
-        // 검색 로직 추가
-        System.out.println("수정할 회원 선택:");
-        // 회원 목록 출력 로직 추가
-        int memberId = scanner.nextInt();
-        scanner.nextLine(); 
-        // 수정 로직 추가
-    }
+	private void manageRooms() {
+		while (true) {
+			System.out.println("방 관리");
+			System.out.println("1. 방 목록");
+			System.out.println("2. 뒤로가기");
+			System.out.print("입력 :");
+			int choice = scanner.nextInt();
+			scanner.nextLine();
 
-    private void deleteMemberInfo() {
-        System.out.print("검색 (아이디 or 이름 or 전화번호): ");
-        String searchQuery = scanner.nextLine();
-        // 검색 로직 추가
-        System.out.println("삭제할 회원 선택:");
-        // 회원 목록 출력 로직 추가
-        int memberId = scanner.nextInt();
-        scanner.nextLine();
-        // 삭제 로직 추가
-    }
+			switch (choice) {
+			case 1:
+				listRooms();
+				break;
+			case 2:
+				return;
+			default:
+				System.out.println("잘못된 선택입니다. 다시 시도하세요.");
+			}
+		}
+	}
 
-    private void manageRooms() {
-        // 방 관리 로직 추가
-    }
+	// 모든 방 출력
+	private void listRooms() {
+		roomController.AllRooms();
+	}
 
-    private void manageReservations() {
-        while (true) {
-            System.out.println("예약 관리");
-            System.out.println("1. 예약");
-            System.out.println("2. 체크인/아웃");
-            System.out.println("3. 예약 확인");
-            System.out.println("4. 예약 수정");
-            System.out.println("5. 예약 취소");
-            System.out.println("6. 뒤로가기");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+	private void manageReservations() {
+		while (true) {
+			System.out.println("예약 관리");
+			System.out.println("1. 예약");
+			System.out.println("2. 체크인/아웃");
+			System.out.println("3. 예약 확인");
+			System.out.println("4. 예약 수정");
+			System.out.println("5. 예약 취소");
+			System.out.println("6. 뒤로가기");
+			System.out.print("입력 :");
+			int choice = scanner.nextInt();
+			scanner.nextLine();
 
-            switch (choice) {
-                case 1:
-                    makeReservation();
-                    break;
-                case 2:
-                    checkInOut();
-                    break;
-                case 3:
-                    confirmReservation();
-                    break;
-                case 4:
-                    modifyReservation();
-                    break;
-                case 5:
-                    cancelReservation();
-                    break;
-                case 6:
-                    return;
-                default:
-                    System.out.println("잘못된 선택입니다. 다시 시도하세요.");
-            }
-        }
-    }
+			switch (choice) {
+			case 1:
+				makeReservation();
+				break;
+			case 2:
+				checkInOut();
+				break;
+			case 3:
+				confirmReservation();
+				break;
+			case 4:
+				modifyReservation();
+				break;
+			case 5:
+				cancelReservation();
+				break;
+			case 6:
+				return;
+			default:
+				System.out.println("잘못된 선택입니다. 다시 시도하세요.");
+			}
+		}
+	}
 
-    private void makeReservation() {
-        // 예약 로직 추가
-    }
+	private void makeReservation() {
+		System.out.println("고객 정보 입력");
+		CustomerVO loginmember = memberController.getUser_admin();
+		if (reservationController.makeReservation(loginmember)) {
+			// 성공
+		} else {
+			// 실패
+		}
+	}
 
-    private void checkInOut() {
-        // 체크인/아웃 로직 추가
-    }
+	private void checkInOut() {
+		System.out.print("예약 번호");
+		int rv_id = scanner.nextInt();
+		scanner.nextLine();
+		System.out.print("고객 아이디: ");
+		String customerId = scanner.nextLine();
+		// 체크인은 예약시작일~예약종료일 전까지만 가능
+		reservationController.checkInOut(rv_id, customerId);
+	}
 
-    private void confirmReservation() {
-        // 예약 확인 로직 추가
-    }
+	private void confirmReservation() {
+		System.out.println("고객 정보 입력");
+		CustomerVO loginmember = memberController.getUser_admin();
+		if (reservationController.confirmReservation(loginmember)) {
+		}
+	}
 
-    private void modifyReservation() {
-        // 예약 수정 로직 추가
-    }
+	private void modifyReservation() {
+		System.out.println("고객 정보 입력");
+		CustomerVO loginmember = memberController.getUser_admin();
+		if (reservationController.modityReservation(loginmember)) {
+		}
+	}
 
-    private void cancelReservation() {
-        // 예약 취소 로직 추가
-    }
+	private void cancelReservation() {
+		System.out.println("고객 정보 입력");
+		CustomerVO loginmember = memberController.getUser_admin();
+		if (reservationController.cancelReservation(loginmember)) {
+		}
+	}
 }
