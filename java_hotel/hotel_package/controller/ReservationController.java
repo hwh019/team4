@@ -113,6 +113,8 @@ public class ReservationController {
 				System.out.println("예약 내역이 없습니다.");
 				return false;
 			}
+			System.out.println("넘어가려면 엔터를 눌러주세요.");
+			scanner.nextLine();
 			return true;
 		}
 		return false;
