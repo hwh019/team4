@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.ReservationDAO">
+	<select id="selectRes" resultType="ReservationVO">
+		<![CDATA[
+		select * from reservation
+		where
+			rv_start_date < #{rv_start_date}
+		and	
+			rv_end_date > #{rv_end_date}	
+		]]>
+	</select>
+	<select id="is_reservated" resultType="ReservationVO">
+				<![CDATA[
+		select * from reservation
+		where
+			rv_start_date >= #{rv_start_date}
+		or	
+			rv_end_date <= #{rv_end_date}	
+		]]>
+	</select>
+	<insert id="insert_reservation">
+		insert into reservation(rv_date, rv_room_num, rv_start_date, rv_end_date, rv_status, rv_total_price, rv_stay_person, mb_id)
+		values(#{rv_date}, #{rv_room_num}, #{rv_start_date}, #{rv_end_date}, '체크인 전', #{rv_total_price}, #{rv_stay_person}, #{mb_id})
+	</insert>
+	<select id="selectroom" resultType="ReservationVO">
+		<![CDATA[
+		select * from reservation
+		where
+			rv_room_num = #{rv_room_num}
+		and
+			rv_start_date <= #{rv_start_date}
+		and	
+			rv_end_date >= #{rv_end_date}	
+		]]>
+	</select>
+	<select id="select_Res" resultType="ReservationVO">
+		select * from reservation
+		where 
+			mb_id = #{mb_id}
+	</select>
+	<select id="select_Res_rv_id" resultType="ReservationVO">
+		select * from reservation
+		where 
+			rv_id = #{rv_id}
+	</select>
+	<delete id="delete_reservation">
+		delete from reservation
+		where
+			rv_id = #{rv_id}
+	</delete>
+	<update id="updateerservation">
+		update reservation
+		set 
+			rv_start_date = #{rv_start_date},
+			rv_end_date = #{rv_end_date},
+			rv_room_num = #{rv_room_num},
+			mb_id = #{mb_id},
+			rv_date = #{rv_date},
+			rv_stay_person = #{rv_stay_person},
+			rv_total_price = #{rv_total_price}
+		where
+			rv_id = #{rv_id}	
+	</update>
+	<update id="update_res_status">
+		update reservation
+		set
+			rv_status = #{date}
+		where
+			rv_id = #{rv_id}
+	</update>
+</mapper>
