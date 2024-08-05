@@ -227,6 +227,7 @@ public class ReservationController {
 		System.out.print("취소할 예약번호를 입력해주세요: ");
 		int rv_id = scanner.nextInt();
 		scanner.nextLine();
+		
 		if (reservationService.deletereservation(rv_id)) {
 			System.out.println("취소 완료");
 			return true;
@@ -236,15 +237,21 @@ public class ReservationController {
 
 	public void checkInOut(int rv_id, String customerId) {
 		ReservationVO res = reservationService.search_reservation(rv_id);
+		
+		if (!res.getMb_id().equals(customerId)) {
+			System.out.println("회원정보가 일치하지 않습니다.");
+			return;
+		} //end not equals member
+		
 		if (res.getRv_status().contains("성공")) {
 			// 이미 체크인 했으면
 			if (res.getMb_id().equals(customerId)) {
 				if (reservationService.can_checkOut(rv_id)) {
 					reservationService.checkOut(rv_id);
 				}
-			}
+			} //end 성공 equals 
 			return;
-		}
+		} //end 성공
 		if (res.getMb_id().equals(customerId)) {
 			// 회원 일치
 			if (reservationService.can_checkIn(rv_id)) {
@@ -252,8 +259,12 @@ public class ReservationController {
 			} else {
 				System.out.println("체크인 실패");
 			}
-		}
+		} // end equals start
 
+	}
+	
+	public List<ReservationVO> selectReservationList() {
+		return reservationService.selectReservationList();
 	}
 
 }

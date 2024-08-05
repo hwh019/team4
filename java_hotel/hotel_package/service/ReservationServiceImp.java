@@ -13,6 +13,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import dao.ReservationDAO;
 import model.vo.ReservationVO;
+import model.vo.RoomVO;
 
 
 public class ReservationServiceImp implements ReservationService {
@@ -126,6 +127,9 @@ public class ReservationServiceImp implements ReservationService {
 		String datecheckin = date + "체크아웃";
 		reservationDao.update_res_status(rv_id, datecheckin);
 		return;
+	}
+	public List<ReservationVO> selectReservationList() {
+		return reservationDao.selectReservationList();
 	}
 
 }

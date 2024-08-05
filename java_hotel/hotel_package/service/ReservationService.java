@@ -34,4 +34,6 @@ public interface ReservationService {
 
 	void checkOut(int rv_id);
 
+	List<ReservationVO> selectReservationList();
+
 }

@@ -34,7 +34,7 @@ public class RoomController {
 	public void AllRooms() {
 		List<RoomVO> roomlist = roomService.showroom_all();
 		if (roomlist.size() == 0 || roomlist.get(0) == null) {
-			System.out.println("방이 없음");
+			System.out.println("현재 준비된 방이 존재하지 않습니다.");
 		} else {
 			for (RoomVO room : roomlist) {
 				System.out.println(room);

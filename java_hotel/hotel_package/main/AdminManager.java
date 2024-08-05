@@ -1,11 +1,14 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import controller.MemberController;
 import controller.ReservationController;
 import controller.RoomController;
 import model.vo.CustomerVO;
+import model.vo.ReservationVO;
 
 
 public class AdminManager {
@@ -167,7 +170,16 @@ public class AdminManager {
 	}
 
 	private void checkInOut() {
-		System.out.print("예약 번호");
+		List<ReservationVO> selectReservationList = reservationController.selectReservationList();
+		
+		if(selectReservationList.size() == 0) {
+			System.out.println("예약이 존재하지 않습니다.");
+			return;
+		}
+		
+		System.out.println(selectReservationList);
+		
+		System.out.print("예약 번호: ");
 		int rv_id = scanner.nextInt();
 		scanner.nextLine();
 		System.out.print("고객 아이디: ");
@@ -177,6 +189,13 @@ public class AdminManager {
 	}
 
 	private void confirmReservation() {
+		List<ReservationVO> selectReservationList = reservationController.selectReservationList();
+		
+		if(selectReservationList.size() == 0) {
+			System.out.println("예약이 존재하지 않습니다.");
+			return;
+		}
+		
 		System.out.println("고객 정보 입력");
 		CustomerVO loginmember = memberController.getUser_admin();
 		if (reservationController.confirmReservation(loginmember)) {
@@ -184,6 +203,12 @@ public class AdminManager {
 	}
 
 	private void modifyReservation() {
+		List<ReservationVO> selectReservationList = reservationController.selectReservationList();
+		
+		if(selectReservationList.size() == 0) {
+			System.out.println("예약이 존재하지 않습니다.");
+			return;
+		}
 		System.out.println("고객 정보 입력");
 		CustomerVO loginmember = memberController.getUser_admin();
 		if (reservationController.modityReservation(loginmember)) {
@@ -191,6 +216,12 @@ public class AdminManager {
 	}
 
 	private void cancelReservation() {
+		List<ReservationVO> selectReservationList = reservationController.selectReservationList();
+		
+		if(selectReservationList.size() == 0) {
+			System.out.println("예약이 존재하지 않습니다.");
+			return;
+		}
 		System.out.println("고객 정보 입력");
 		CustomerVO loginmember = memberController.getUser_admin();
 		if (reservationController.cancelReservation(loginmember)) {

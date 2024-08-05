@@ -35,9 +35,9 @@ public class ReservationVO {
 		String date = sdf2.format(rv_date);
 		String start_date = sdf2.format(rv_start_date);
 		String end_date = sdf2.format(rv_end_date);
-		return "[예약번호 :" + rv_id + "| 예약한 날짜: " + date + "| 방 번호: " + rv_room_num + "| 시작일:" + start_date
-				+ "| 종료일 :" + end_date + "| 가격: " + rv_total_price + "| 상태 : " + rv_status + "| 인원수: "
-				+ rv_stay_person + "명]";
+		return "[예약번호 :" + rv_id + "| 예약한 날짜: " + date + "| 방 번호: " + rv_room_num + "| 숙박일: " + start_date
+				+ " ~ " + end_date + "| 가격: " + rv_total_price + "| 상태 : " + rv_status + "| 인원수: "
+				+ rv_stay_person + "명| 예약자명: " + mb_id + "]\n";
 	}
 
 	@Override

@@ -13,13 +13,16 @@
 		]]>
 	</select>
 	<select id="is_reservated" resultType="ReservationVO">
-				<![CDATA[
+		<![CDATA[
 		select * from reservation
 		where
 			rv_start_date >= #{rv_start_date}
 		or	
 			rv_end_date <= #{rv_end_date}	
 		]]>
+	</select>
+	<select id="selectReservationList" resultType="ReservationVO">
+		select * from reservation
 	</select>
 	<insert id="insert_reservation">
 		insert into reservation(rv_date, rv_room_num, rv_start_date, rv_end_date, rv_status, rv_total_price, rv_stay_person, mb_id)
