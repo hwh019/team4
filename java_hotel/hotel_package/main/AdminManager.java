@@ -100,7 +100,8 @@ public class AdminManager {
 		while (true) {
 			System.out.println("방 관리");
 			System.out.println("1. 방 목록");
-			System.out.println("2. 뒤로가기");
+			System.out.println("2. 방 등록");
+			System.out.println("3. 뒤로가기");
 			System.out.print("입력 :");
 			int choice = scanner.nextInt();
 			scanner.nextLine();
@@ -110,11 +111,22 @@ public class AdminManager {
 				listRooms();
 				break;
 			case 2:
+				insertRoom();
+				break;
+			case 3:
 				return;
 			default:
 				System.out.println("잘못된 선택입니다. 다시 시도하세요.");
 			}
 		}
+	}
+
+	private void insertRoom() {
+		System.out.println("방 등록 페이지 입니다.");
+		System.out.println("[방 목록]\n");
+		roomController.AllRooms();
+		System.out.println("========================");
+		roomController.insertRoom();
 	}
 
 	// 모든 방 출력

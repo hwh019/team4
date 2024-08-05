@@ -16,5 +16,7 @@ public interface RoomDAO {
 	RoomVO showRoom(@Param("ro_num") int ro_num);
 
 	List<RoomVO> showroom_all();
+	
+	boolean insertRoom(@Param("ro")RoomVO room);
 
 }

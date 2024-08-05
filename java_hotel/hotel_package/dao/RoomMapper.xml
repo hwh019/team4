@@ -15,7 +15,14 @@
 		where
 			ro_num = #{ro_num}
 	</select>
-		<select id="showroom_all" resultType="RoomVO">
+	<select id="showroom_all" resultType="RoomVO">
 		select * from room
 	</select>
+	<insert id="insertRoom">
+		insert into room
+		set ro_num = #{ro.ro_num},
+			ro_price = #{ro.ro_price},
+			ro_max_person = #{ro.ro_max_person},
+			ro_name = #{ro.ro_name}
+	</insert>
 </mapper>

@@ -43,4 +43,40 @@ public class RoomController {
 		}
 	}
 
+	public void insertRoom() {
+		RoomVO room = inputRoomExpand();
+		if(roomService.insertRoom(room)) {
+			System.out.println( room.getRo_num() + "호 " + room.getRo_name() + " 등록되었습니다.");
+		} else {
+			System.out.println("이미 등록된 방입니다.");
+		}
+	} //end insertRoom
+
+	private RoomVO inputRoomExpand() {
+		RoomVO room = inputRoom();
+		
+		System.out.println("방 이름: ");
+		scanner.nextLine();
+		String roomName = scanner.nextLine();
+		
+		System.out.print("1박 가격: ");
+		int price = scanner.nextInt();
+		
+		System.out.print("정원: ");
+		int max = scanner.nextInt();
+		
+		room.setRo_name(roomName);
+		room.setRo_price(price);
+		room.setRo_max_person(max);
+		
+		return room;
+	} //end inputRoomExpand
+	
+	private RoomVO inputRoom() {
+		System.out.print("호수: ");
+		int roomNum = scanner.nextInt();
+		
+		return new RoomVO(roomNum);
+	} //end inputRoom
+
 }

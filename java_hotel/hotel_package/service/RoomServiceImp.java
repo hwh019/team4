@@ -46,5 +46,18 @@ public class RoomServiceImp implements RoomService {
 	public List<RoomVO> showroom_all() {
 		return roomDao.showroom_all();
 	}
+	
+	public boolean insertRoom(RoomVO room) {
+		if(room == null) {
+			return false;
+		}
+		
+		RoomVO dbroom = roomDao.showRoom(room.getRo_num());
+		if(dbroom != null) {
+			return false;
+		}
+
+		return roomDao.insertRoom(room);
+	} //end boolean insertRoom
 
 }
