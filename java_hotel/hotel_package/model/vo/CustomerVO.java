@@ -14,7 +14,7 @@ public class CustomerVO {
 	private String mb_name;
 	private String mb_password;
 	private String mb_email;
-	private boolean mb_is_admin;
+	private char mb_is_admin;
 
 	// id, password만 같으면 true;
 	@Override
