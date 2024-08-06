@@ -33,8 +33,10 @@ public class ReservationController {
 		String end_date = scanner.nextLine();
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		try {
+			// 입력된 시작 날짜와 종료 날짜를 Date 객체로 변환
 			Date startdate = format.parse(start_date);
 			Date enddate = format.parse(end_date);
+			// 시작 날짜가 종료 날짜보다 같거나 이후이면 잘못된 입력
 			if (startdate.compareTo(enddate) >= 0) {
 				System.out.println("날짜를 잘못입력하셨습니다.");
 				return false;
@@ -47,27 +49,36 @@ public class ReservationController {
 			Date date = new Date();
 			// 날짜, 인원수에 맞는 방 선택
 			List<RoomVO> roomlist1 = roomController.selectroom(startdate, enddate, rv_stay_person);
-			if (roomlist1 == null) {
-				System.out.println("해당하는 방이 없습니다.");
-				return false;
-			}
-			int roomlist_size = roomlist1.size();
-			int roomcount = 0;
-			for (RoomVO roomper_person : roomlist1) {
-				// 인원수 맞는 방
-				int i = roomper_person.getRo_num();
-				// 방 하나씩 가능한 날짜가 있는지 체크
-				ReservationVO ress = reservationService.selectroom(startdate, enddate, i);
-				if (ress == null) {
-					roomController.showroom(i);
-				} else {
-					roomcount++;
-				}
-				if (roomcount == roomlist_size) {
-					System.out.println("해당하는 방이 없습니다.");
-					return false;
-				}
-			}
+			 // 방 목록이 비어 있으면 방이 없다는 메시지 출력
+			if (roomlist1 == null || roomlist1.isEmpty()) {
+	            System.out.println("예약 가능한 방이 없습니다.");
+	            return false;
+	        }
+	        int roomlist_size = roomlist1.size();
+	        int roomcount = 0;
+	        // 예약 가능한 방이 있는지 여부 추적
+	        boolean roomAvailable = false;
+	        for (RoomVO roomper_person : roomlist1) {
+	            // 인원수 맞는 방
+	            int i = roomper_person.getRo_num();
+	            // 방 하나씩 가능한 날짜가 있는지 체크
+	            ReservationVO ress = reservationService.selectroom(startdate, enddate, i);
+	            if (ress == null) {
+	            	// 예약 가능한 방이 있으면 방 정보 출력
+	                roomController.showroom(i);
+	                roomAvailable = true;
+	            } else {
+	                roomcount++;
+	            }
+	            if (roomcount == roomlist_size && !roomAvailable) {
+	                System.out.println("예약 가능한 방이 없습니다.");
+	                return false;
+	            }
+	        }
+	        if (!roomAvailable) {
+	            System.out.println("예약 가능한 방이 없습니다.");
+	            return false;
+	        }
 			System.out.print("예약하실 방을 선택해주세요 :");
 			int rv_room_num = scanner.nextInt();
 			scanner.nextLine();
@@ -80,7 +91,7 @@ public class ReservationController {
 			if (payed == 'y' || payed == 'Y') {
 				if (reservationService.insert_reservation(startdate, enddate, rv_room_num,
 						loginmember.getMb_id(), date, rv_stay_person, total_price)) {
-					System.out.println("예약 성공");
+					System.out.println("예약이 완료되었습니다.");
 					return true;
 				}
 			}
@@ -196,13 +207,13 @@ public class ReservationController {
 						return true;
 					}
 				}
-				System.out.println("결제 취소");
+				System.out.println("결제가 취소되었습니다.");
 				System.out.println("이전 화면으로 돌아갑니다.");
 				return false;
 			} else if (room_price == update_res.getRv_total_price()) {
 				if (reservationService.updatereservation(rv_id, startdate, enddate, rv_room_num,
 						loginmember.getMb_id(), date, rv_stay_person, room_price)) {
-					System.out.println("수정 완료");
+					System.out.println("예약정보가 수정되었습니다.");
 					return true;
 				}
 			} else {
@@ -210,7 +221,7 @@ public class ReservationController {
 				System.out.println("차액 " + room_price + "환불 해드리겠습니다.");
 				if (reservationService.updatereservation(rv_id, startdate, enddate, rv_room_num,
 						loginmember.getMb_id(), date, rv_stay_person, room_price)) {
-					System.out.println("수정 완료");
+					System.out.println("예약정보가 수정되었습니다.");
 					return true;
 				}
 			}
@@ -231,7 +242,7 @@ public class ReservationController {
 		scanner.nextLine();
 		
 		if (reservationService.deletereservation(rv_id)) {
-			System.out.println("취소 완료");
+			System.out.println("예약이 취소되었습니다.");
 			return true;
 		}
 		return false;
@@ -259,7 +270,7 @@ public class ReservationController {
 			if (reservationService.can_checkIn(rv_id)) {
 				reservationService.checkIn(rv_id);
 			} else {
-				System.out.println("체크인 실패");
+				System.out.println("체크인에 실패했습니다.");
 			}
 		} // end equals start
 	} //체크인 기능
