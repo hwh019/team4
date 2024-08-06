@@ -7,7 +7,7 @@
 		<![CDATA[
 		select * from room
 		where
-			ro_max_person >= #{rv_stay_person};
+			ro_max_person >= #{rv_stay_person}
 		order by ro_num ASC
 		]]>
 	</select>
