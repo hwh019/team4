@@ -68,6 +68,7 @@ public class CustomerManager {
 			System.out.println("1. 예약");
 			System.out.println("2. 회원정보");
 			System.out.println("3. 로그아웃");
+			System.out.print("입력: ");
 			int choice = scanner.nextInt();
 			scanner.nextLine();
 
@@ -94,6 +95,7 @@ public class CustomerManager {
 			System.out.println("3. 예약수정");
 			System.out.println("4. 예약취소");
 			System.out.println("5. 뒤로가기");
+			System.out.print("입력: ");
 			int choice = scanner.nextInt();
 			scanner.nextLine();
 
@@ -125,6 +127,7 @@ public class CustomerManager {
 			System.out.println("2. 회원정보 수정");
 			System.out.println("3. 회원탈퇴");
 			System.out.println("4. 뒤로가기");
+			System.out.print("입력: ");
 			int choice = scanner.nextInt();
 			scanner.nextLine();
 
