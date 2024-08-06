@@ -132,4 +132,9 @@ public class ReservationServiceImp implements ReservationService {
 		return reservationDao.selectReservationList();
 	}
 
+	@Override
+	public boolean deleteMember(String mb_id) {
+		return reservationDao.deleteMember(mb_id);
+	}
+
 }

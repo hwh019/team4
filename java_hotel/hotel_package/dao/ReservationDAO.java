@@ -37,5 +37,6 @@ public interface ReservationDAO {
 			@Param("rv_stay_person") int rv_stay_person, @Param("rv_total_price") int rv_total_price);
 
 	void update_res_status(@Param("rv_id") int rv_id, @Param("date") String datecheckin);
-
+	
+	boolean deleteMember(@Param("mb_id")String mb_id);
 }

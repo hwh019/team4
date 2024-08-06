@@ -36,4 +36,6 @@ public interface ReservationService {
 
 	List<ReservationVO> selectReservationList();
 
+	boolean deleteMember(String mb_id);
+
 }

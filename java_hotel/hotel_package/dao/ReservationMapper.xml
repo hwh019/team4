@@ -54,6 +54,11 @@
 		where
 			rv_id = #{rv_id}
 	</delete>
+	<delete id="deleteMember">
+		delete from reservation
+		where
+			mb_id = #{mb_id}
+	</delete>
 	<update id="updateerservation">
 		update reservation
 		set 

@@ -5,11 +5,14 @@ import java.util.Scanner;
 import model.vo.CustomerVO;
 import service.MemberService;
 import service.MemberServiceImp;
+import service.ReservationService;
+import service.ReservationServiceImp;
 
 
 public class MemberController {
 
 	private MemberService memberService = new MemberServiceImp();
+	private ReservationService reservationService = new ReservationServiceImp();
 	private Scanner scanner;
 
 	public MemberController(Scanner scan) {
@@ -47,14 +50,15 @@ public class MemberController {
 	} //회원정보수정
 
 	public void deleteMember(CustomerVO loginmember) {
-		System.out.println("정말로 탈퇴하시겠습니까? (Y | N)");
+		System.out.print("정말로 탈퇴하시겠습니까? (Y | N): ");
 		char input = scanner.next().charAt(0);
 		if (input == 'y' || input == 'Y') {
+			reservationService.deleteMember(loginmember.getMb_id());
 			if (memberService.deleteMember(loginmember)) {
 				System.out.println("회원탈퇴를 완료했습니다.");
 				return;
 			}
-			System.out.println("탈퇴 실패");
+			System.out.println("회원탈퇴를 진행하지 못했습니다.");
 		}
 	} //회원탈퇴
 
