@@ -92,13 +92,13 @@ public class ReservationController {
 			return false;
 		}
 
-	}
+	} //방 예약 기본기능
 
 	private long calculate(Date startdate, Date enddate) {
 		long diffdays = (enddate.getTime() - startdate.getTime()) / 1000;
 		diffdays = diffdays / (24 * 60 * 60);
 		return diffdays;
-	}
+	} //일수에 따른 방 금액 계산
 
 	public boolean confirmReservation(CustomerVO loginmember) {
 		// true는 예약 있음, false는 예약내역 없음
@@ -118,7 +118,7 @@ public class ReservationController {
 			return true;
 		}
 		return false;
-	}
+	} //예약 확인 기능
 
 	public boolean modityReservation(CustomerVO loginmember) {
 		// 수정실패 false; 성공 true;
@@ -219,7 +219,7 @@ public class ReservationController {
 			e.printStackTrace();
 		}
 		return false;
-	}
+	} //예약 변경 기능
 
 	public boolean cancelReservation(CustomerVO loginmember) {
 		if (!confirmReservation(loginmember)) {
@@ -235,7 +235,7 @@ public class ReservationController {
 			return true;
 		}
 		return false;
-	}
+	} //예약 취소 기능 (취소시 예약 내역 삭제)
 
 	public void checkInOut(int rv_id, String customerId) {
 		ReservationVO res = reservationService.search_reservation(rv_id);
@@ -262,11 +262,10 @@ public class ReservationController {
 				System.out.println("체크인 실패");
 			}
 		} // end equals start
-
-	}
+	} //체크인 기능
 	
 	public List<ReservationVO> selectReservationList() {
 		return reservationService.selectReservationList();
-	}
+	} //예약 전체 리스트 확인 기능
 
 }
