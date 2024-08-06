@@ -19,17 +19,17 @@ public class RoomController {
 
 	public List<RoomVO> selectroom(Date startdate, Date enddate, int rv_stay_person) {
 		return roomService.selectRoom(startdate, enddate, rv_stay_person);
-	}
+	} //원하는 일자에 예약이 가능한 방만 리스트업하는 기능
 
 	public void showroom(int ro_num) {
 		RoomVO room = roomService.showroom(ro_num);
 		System.out.println(room);
-	}
+	} //입력한 방의 정보를 노출시키는 기능
 
 	public int getroom_price(int rv_room_num) {
 		RoomVO room = roomService.showroom(rv_room_num);
 		return room.getRo_price();
-	}
+	} //선택한 방의 금액을 가져오는 기능
 
 	public void AllRooms() {
 		List<RoomVO> roomlist = roomService.showroom_all();
@@ -41,7 +41,7 @@ public class RoomController {
 				System.out.println();
 			}
 		}
-	}
+	} //존재하는 모든 방을 리스트업하는 기능 없을 경우 미노출
 
 	public void insertRoom() {
 		RoomVO room = inputRoom();
@@ -56,7 +56,7 @@ public class RoomController {
 		} else {
 			System.out.println("이미 등록된 방입니다.");
 		}
-	} //end insertRoom
+	} //end insertRoom - 방을 등록하는 기능
 
 	private RoomVO inputRoomExpand(RoomVO room) {
 
@@ -75,14 +75,14 @@ public class RoomController {
 		room.setRo_max_person(max);
 		
 		return room;
-	} //end inputRoomExpand
+	} //end inputRoomExpand 방의 기본정보를 입력하는 기능
 	
 	private RoomVO inputRoom() {
 		System.out.print("호수: ");
 		int roomNum = scanner.nextInt();
 		
 		return new RoomVO(roomNum);
-	} //end inputRoom
+	} //end inputRoom 방 호수를 입력하여 객체로 반환하는 기능
 
 	public void updateRoom() {
 		RoomVO dbRoom = roomService.showroom(inputRoom().getRo_num());
@@ -102,7 +102,7 @@ public class RoomController {
 		}
 
 		System.out.println("방 정보를 수정하지 못했습니다.");
-	}
+	} //end updateRoom - 방의 정보를 수정하는 기능
 
 	public void deleteRoom() {
 		RoomVO dbRoom = roomService.showroom(inputRoom().getRo_num());
@@ -132,7 +132,6 @@ public class RoomController {
 				return;
 			}
 		}
-		
-	}
+	} //deleteRoom 등록된 방을 삭제하는 기능
 
 }

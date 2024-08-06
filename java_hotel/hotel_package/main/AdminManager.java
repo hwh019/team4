@@ -20,11 +20,6 @@ public class AdminManager {
 	private CustomerVO loginadmin;
 
 	public void run() {
-		// 방 샘플 데이터
-//        rooms.add(new RoomVO("101"));
-//        rooms.add(new RoomVO("102"));
-//        rooms.add(new RoomVO("103"));
-		// 샘플 데이터를 sql로 추가하는데 좋을거같아서 삭제
 		adminLogin();
 	}
 
