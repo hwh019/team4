@@ -80,7 +80,7 @@ public class ReservationController {
 			if (payed == 'y' || payed == 'Y') {
 				if (reservationService.insert_reservation(startdate, enddate, rv_room_num,
 						loginmember.getMb_id(), date, rv_stay_person, total_price)) {
-					System.out.println("예약 성공");
+					System.out.println("예약이 완료되었습니다.");
 					return true;
 				}
 			}
@@ -196,13 +196,13 @@ public class ReservationController {
 						return true;
 					}
 				}
-				System.out.println("결제 취소");
+				System.out.println("결제가 취소되었습니다.");
 				System.out.println("이전 화면으로 돌아갑니다.");
 				return false;
 			} else if (room_price == update_res.getRv_total_price()) {
 				if (reservationService.updatereservation(rv_id, startdate, enddate, rv_room_num,
 						loginmember.getMb_id(), date, rv_stay_person, room_price)) {
-					System.out.println("수정 완료");
+					System.out.println("예약정보가 수정되었습니다.");
 					return true;
 				}
 			} else {
@@ -210,7 +210,7 @@ public class ReservationController {
 				System.out.println("차액 " + room_price + "환불 해드리겠습니다.");
 				if (reservationService.updatereservation(rv_id, startdate, enddate, rv_room_num,
 						loginmember.getMb_id(), date, rv_stay_person, room_price)) {
-					System.out.println("수정 완료");
+					System.out.println("예약정보가 수정되었습니다.");
 					return true;
 				}
 			}
@@ -231,7 +231,7 @@ public class ReservationController {
 		scanner.nextLine();
 		
 		if (reservationService.deletereservation(rv_id)) {
-			System.out.println("취소 완료");
+			System.out.println("예약이 취소되었습니다.");
 			return true;
 		}
 		return false;
@@ -259,7 +259,7 @@ public class ReservationController {
 			if (reservationService.can_checkIn(rv_id)) {
 				reservationService.checkIn(rv_id);
 			} else {
-				System.out.println("체크인 실패");
+				System.out.println("체크인에 실패했습니다.");
 			}
 		} // end equals start
 	} //체크인 기능

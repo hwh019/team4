@@ -16,9 +16,7 @@ public class MemberController {
 		this.scanner = scan;
 	}
 
-	public boolean userRegister() {
-		System.out.print("아이디: ");
-		String mb_id = scanner.nextLine();
+	public boolean userRegister(String mb_id) {
 		System.out.print("비밀번호: ");
 		String mb_password = scanner.nextLine();
 		System.out.print("이름: ");
