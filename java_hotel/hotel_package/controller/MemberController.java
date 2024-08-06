@@ -17,7 +17,6 @@ public class MemberController {
 	}
 
 	public boolean userRegister() {
-
 		System.out.print("아이디: ");
 		String mb_id = scanner.nextLine();
 		System.out.print("비밀번호: ");
@@ -27,7 +26,7 @@ public class MemberController {
 		System.out.print("이메일: ");
 		String mb_email = scanner.nextLine();
 		return memberService.Register(mb_id, mb_password, mb_name, mb_email);
-	}
+	} //회원 가입
 
 	public CustomerVO userLogin() {
 		System.out.print("아이디: ");
@@ -36,7 +35,7 @@ public class MemberController {
 		String mb_password = scanner.nextLine();
 		CustomerVO user = memberService.loginmember(mb_id, mb_password);
 		return user;
-	}
+	} //회원 로그인
 
 	public boolean updatemember(CustomerVO loginmember) {
 
@@ -47,7 +46,7 @@ public class MemberController {
 		System.out.print("이메일: ");
 		String mb_email = scanner.nextLine();
 		return memberService.update(mb_password, mb_name, mb_email, loginmember.getMb_id());
-	}
+	} //회원정보수정
 
 	public void deleteMember(CustomerVO loginmember) {
 		System.out.println("정말로 탈퇴하시겠습니까? (Y | N)");
@@ -59,12 +58,12 @@ public class MemberController {
 			}
 			System.out.println("탈퇴 실패");
 		}
-	}
+	} //회원탈퇴
 
 	public void searchuser(CustomerVO loginmember) {
 		CustomerVO user = memberService.searchuser(loginmember.getMb_no());
 		System.out.println(user);
-	}
+	} //회원정보
 
 	public CustomerVO getUser(CustomerVO loginmember) {
 		return memberService.getUser(loginmember.getMb_no());
@@ -75,10 +74,9 @@ public class MemberController {
 			// 어드민임
 			return memberService.loginmember(adminId, adminPw);
 		} else {
-
 			return null;
 		}
-	}
+	} //관리자 로그인
 
 	// 해당하는 입력값의 모든 회원들의 정보를 출력 admin빼고;
 	public void searchmember_admin() {
@@ -89,15 +87,14 @@ public class MemberController {
 		} else {
 			// 실패
 			System.out.println("해당하는 회원이 없습니다.");
-
 		}
-	}
+	} //관리자를 제외한 입력된 회원을 가져오는 기능
 
 	public CustomerVO getUser_admin() {
 		System.out.print("아이디: ");
 		String mb_id = scanner.nextLine();
 		CustomerVO user = memberService.getuser_admin(mb_id);
 		return user;
-	}
+	} //회원 아이디로 회원을 가져오는 기능
 
 }
