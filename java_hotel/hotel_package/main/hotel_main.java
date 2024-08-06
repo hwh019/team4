@@ -10,9 +10,9 @@ public class hotel_main {
 		AdminManager am = new AdminManager();
 
 		while (true) {
-			System.out.println("홈페이지 메뉴");
-			System.out.println("1. 직원");
-			System.out.println("2. 손님");
+			System.out.println("[홈페이지 메뉴]");
+			System.out.println("1. 관리자");
+			System.out.println("2. 회원");
 			System.out.println("3. 종료");
 			System.out.print("입력: ");
 			int userType = scanner.nextInt();
