@@ -21,10 +21,11 @@ public class CustomerManager {
 
 	private void userMenu() {
 		while (true) {
-			System.out.println("사용자 메뉴");
+			System.out.println("[사용자 메뉴]");
 			System.out.println("1. 로그인");
 			System.out.println("2. 회원가입");
 			System.out.println("3. 뒤로가기");
+			System.out.print("입력: ");
 			int choice = scanner.nextInt();
 			scanner.nextLine();
 
@@ -32,7 +33,7 @@ public class CustomerManager {
 			case 1:
 				loginmember = memberController.userLogin();
 				if (loginmember == null) {
-					System.out.println("로그인 실패");
+					System.out.println("아이디 혹은 비밀번호가 일치하지 않습니다.");
 				} else {
 					userLoggedInMenu();
 				}
@@ -49,10 +50,13 @@ public class CustomerManager {
 	}
 
 	private void userRegister() {
-		if (memberController.userRegister()) {
-			System.out.println("회원가입 성공");
+		System.out.print("아이디: ");
+		String mb_id = scanner.nextLine();
+		
+		if (memberController.userRegister(mb_id)) {
+			System.out.println(mb_id + "님 회원가입을 축하합니다.");
 		} else {
-			System.out.println("회원가입 실패");
+			System.out.println("이미 등록된 회원입니다.");
 		}
 
 	}
@@ -60,7 +64,7 @@ public class CustomerManager {
 	private void userLoggedInMenu() {
 		System.out.println(loginmember.getMb_name() + "님 환영합니다.");
 		while (true) {
-			System.out.println("사용자 메뉴");
+			System.out.println("[사용자 메뉴]");
 			System.out.println("1. 예약");
 			System.out.println("2. 회원정보");
 			System.out.println("3. 로그아웃");
@@ -84,7 +88,7 @@ public class CustomerManager {
 
 	private void userManageReservations() {
 		while (true) {
-			System.out.println("예약");
+			System.out.println("[예약 메뉴]");
 			System.out.println("1. 예약");
 			System.out.println("2. 예약확인");
 			System.out.println("3. 예약수정");
@@ -116,7 +120,7 @@ public class CustomerManager {
 
 	private void userManageInfo() {
 		while (true) {
-			System.out.println("회원정보");
+			System.out.println("[회원정보]");
 			System.out.println("1. 회원정보");
 			System.out.println("2. 회원정보 수정");
 			System.out.println("3. 회원탈퇴");
@@ -150,10 +154,10 @@ public class CustomerManager {
 
 	private CustomerVO modifyUserInfo() {
 		if (memberController.updatemember(loginmember)) {
-			System.out.println("수정 성공");
+			System.out.println("회원님의 정보가 수정되었습니다.");
 			return memberController.getUser(loginmember);
 		}
-		System.out.println("수정 실패");
+		System.out.println("회원님의 정보를 수정할 수 없습니다.");
 		return loginmember;
 	}
 

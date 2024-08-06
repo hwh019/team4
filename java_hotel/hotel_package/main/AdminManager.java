@@ -1,6 +1,5 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,7 +38,7 @@ public class AdminManager {
 
 	private void adminMenu(CustomerVO loginadmin) {
 		while (true) {
-			System.out.println("관리자 메뉴");
+			System.out.println("[관리자 메뉴]");
 			System.out.println("1. 회원관리");
 			System.out.println("2. 방 관리");
 			System.out.println("3. 예약 관리");
@@ -68,7 +67,7 @@ public class AdminManager {
 
 	private void manageMembers() {
 		while (true) {
-			System.out.println("회원관리");
+			System.out.println("[회원관리]");
 			System.out.println("1. 회원 정보");
 			System.out.println("2. 뒤로가기");
 			System.out.print("입력 :");
@@ -93,7 +92,7 @@ public class AdminManager {
 
 	private void manageRooms() {
 		while (true) {
-			System.out.println("방 관리");
+			System.out.println("[방 관리]");
 			System.out.println("1. 방 목록");
 			System.out.println("2. 방 등록");
 			System.out.println("3. 방 수정");
@@ -158,7 +157,7 @@ public class AdminManager {
 
 	private void manageReservations() {
 		while (true) {
-			System.out.println("예약 관리");
+			System.out.println("[예약 관리]");
 			System.out.println("1. 예약");
 			System.out.println("2. 체크인/아웃");
 			System.out.println("3. 예약 확인");
@@ -194,7 +193,7 @@ public class AdminManager {
 	}
 
 	private void makeReservation() {
-		System.out.println("고객 정보 입력");
+		System.out.println("[고객 정보 입력]");
 		CustomerVO loginmember = memberController.getUser_admin();
 		if (reservationController.makeReservation(loginmember)) {
 			// 성공
@@ -230,7 +229,7 @@ public class AdminManager {
 			return;
 		}
 		
-		System.out.println("고객 정보 입력");
+		System.out.println("[고객 정보 입력]");
 		CustomerVO loginmember = memberController.getUser_admin();
 		if (reservationController.confirmReservation(loginmember)) {
 		}
@@ -243,7 +242,7 @@ public class AdminManager {
 			System.out.println("예약이 존재하지 않습니다.");
 			return;
 		}
-		System.out.println("고객 정보 입력");
+		System.out.println("[고객 정보 입력]");
 		CustomerVO loginmember = memberController.getUser_admin();
 		if (reservationController.modityReservation(loginmember)) {
 		}
@@ -256,7 +255,7 @@ public class AdminManager {
 			System.out.println("예약이 존재하지 않습니다.");
 			return;
 		}
-		System.out.println("고객 정보 입력");
+		System.out.println("[고객 정보 입력]");
 		CustomerVO loginmember = memberController.getUser_admin();
 		if (reservationController.cancelReservation(loginmember)) {
 		}
