@@ -261,6 +261,9 @@ public class ReservationController {
 			if (res.getMb_id().equals(customerId)) {
 				if (reservationService.can_checkOut(rv_id)) {
 					reservationService.checkOut(rv_id);
+					System.out.println(res.getMb_id() + "님 체크아웃 되었습니다.");
+				} else {
+					System.out.println("체크아웃에 실패했습니다.");
 				}
 			} //end 성공 equals 
 			return;
@@ -269,6 +272,7 @@ public class ReservationController {
 			// 회원 일치
 			if (reservationService.can_checkIn(rv_id)) {
 				reservationService.checkIn(rv_id);
+				System.out.println(res.getMb_id() + "님 체크인 되었습니다.");
 			} else {
 				System.out.println("체크인에 실패했습니다.");
 			}
